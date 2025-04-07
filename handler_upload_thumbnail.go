@@ -15,7 +15,6 @@ import (
 )
 
 func (cfg *apiConfig) handlerUploadThumbnail(w http.ResponseWriter, r *http.Request) {
-
 	const maxMemory = 10 << 20
 	r.ParseMultipartForm(maxMemory)
 
