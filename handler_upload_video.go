@@ -152,7 +152,7 @@ func (cfg *apiConfig) handlerUploadVideo(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
-	videoURL := fmt.Sprintf("https://%s.s3.%s.amazonaws.com/%s", cfg.s3Bucket, cfg.s3Region, s3Key)
+	videoURL := fmt.Sprintf("%s/%s", cfg.s3CfDistribution, s3Key)
 	videoMetadata.VideoURL = &videoURL
 
 	err = cfg.db.UpdateVideo(videoMetadata)
@@ -161,5 +161,5 @@ func (cfg *apiConfig) handlerUploadVideo(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
-	respondWithJSON(w, http.StatusOK, videoMetadata)
+	respondWithJSON(w, http.StatusOK, videoURL)
 }
